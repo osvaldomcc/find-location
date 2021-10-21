@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/leaflet.css",
               "src/styles.css"
             ],
             "scripts": []
