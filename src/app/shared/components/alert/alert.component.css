@@ -1,0 +1,58 @@
+.alert {
+  position: fixed;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  text-align: center;
+}
+.alert__wrapper {
+  position: relative;
+  width: 90%;
+  margin: auto;
+  background: crimson;
+  border-radius: 10px;
+}
+.alert__content {
+  padding: 30px;
+}
+.ionicon {
+  color: white;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 25px;
+}
+
+.fadeIn {
+  animation: fadeIn 1s;
+}
+
+.fadeOut {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 100;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media screen and (min-width: 658px) {
+  .alert {
+    max-width: 658px;
+    margin: auto;
+  }
+}

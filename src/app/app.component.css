@@ -15,6 +15,7 @@ header {
   bottom: 0;
 }
 h1 {
+  margin-bottom: 20px;
   text-align: center;
   font-weight: 400;
   font-size: 22px;
@@ -22,3 +23,30 @@ h1 {
 .container {
   margin: 0 30px;
 }
+app-search {
+  position: relative;
+}
+app-card {
+  position: absolute;
+  right: 30px;
+  left: 30px;
+}
+main {
+  overflow: hidden;
+  height: 70vh;
+}
+.centered {
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+ @media screen and (min-width: 768px){
+  .info {
+    position: relative;
+    max-width: 70%;
+    margin: auto;
+  }
+ }

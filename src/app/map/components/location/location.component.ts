@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component } from '@angular/core';
+import { MapService } from '../../services/map.service';
+import { IpGeo } from '../../interfaces/ipgeo.interface';
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css']
 })
-export class LocationComponent implements OnInit {
+export class LocationComponent implements AfterContentChecked {
 
-  constructor() { }
+    ipAddress!: IpGeo;
+    isLoading: boolean = true;
 
-  ngOnInit(): void {
-  }
-
+    constructor(private mapService: MapService) { }
+  
+    ngAfterContentChecked(): void {
+      this.mapService.userLocation.subscribe( desc => {
+        this.ipAddress = desc
+      });
+    }
 }

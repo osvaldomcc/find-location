@@ -1,1 +1,22 @@
-<p>location works!</p>
+<div class="location" *ngIf="ipAddress; else spinner">
+  <div class="location__section">
+    <span>IP ADDRESS</span>
+    {{ ipAddress.ip }}
+  </div>
+  <div class="location__section">
+    <span>LOCATION</span>
+    {{ ipAddress.city }}, {{ ipAddress.country_capital }},
+  </div>
+  <div class="location__section">
+    <span>TIMEZONE</span>
+    UTC{{ ipAddress.time_zone.name }}
+  </div>
+  <div class="location__section">
+    <span>ISP</span>
+    {{ ipAddress.isp }}
+  </div>
+</div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

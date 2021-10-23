@@ -1,4 +1,4 @@
-form {
+.form {
   display: flex;
   margin-top: 30px;
 }
@@ -14,6 +14,7 @@ form {
   width: 100%;
   color: var(--very-dark-gray);
   font-size: 16px;
+  cursor: pointer;
   font-weight: 600;
 }
 .form__container input:focus {
@@ -27,6 +28,24 @@ form {
   cursor: pointer;
   border-radius: 0px 20px 20px 0;
   width: 20%;
-  background: var(--very-dark-gray);
+  background: var(--dark);
   border: none;
+}
+.form__button:hover {
+  background: var(--very-dark-gray);
+}
+@media screen and (min-width: 489px) {
+  .form {
+    max-width: 500px;
+    margin: auto;
+  }
+  .form__container {
+    width: 95%;
+  }
+  .form__button {
+    width: 15%;
+  }
+  .form__container input {
+    padding: 20px 0 20px 35px;
+  }
 }

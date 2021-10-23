@@ -2,10 +2,12 @@
 :root {
   --mobile: 375px;
   --desktop: 1440px;
-  --very-dark-gray: hsl(0, 0%, 17%);
+  --very-dark-gray: hsl(0, 0%, 18%);
+  --dark: hsl(0, 0%, 0%);
   --dark-gray: hsl(0, 0%, 59%);
   --font-size: 18px;
   --white: white;
+  --fancy-blue: #556AD0;
 }
 
 * {

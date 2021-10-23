@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MapService } from '../../services/map.service';
 
 @Component({
@@ -6,12 +6,14 @@ import { MapService } from '../../services/map.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements AfterViewInit {
 
+  @ViewChild('map') mapRef!: any;
+  
   constructor(private mapService: MapService){}
   
-  ngOnInit(): void {
-    this.mapService.initMap();
+  ngAfterViewInit(): void {
+    this.mapService.initMap(this.mapRef.nativeElement);
   }
   
 }

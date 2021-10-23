@@ -1,0 +1,7 @@
+.error {
+  background-color: var(--fancy-blue);
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px;
+  text-align: center;
+}

@@ -1,11 +1,36 @@
-<header>
-  <img class="header__background" src="../assets/visual/pattern-bg.png" />
-  <div class="header__content">
-    <div class="header__container">
-      <h1>IP Adress Tracker</h1>
-      <div class="container">
-        <app-search></app-search>
+<div class="wrapper" *ngIf="!isLoading && !isError">
+  <header>
+    <img class="header__background" src="../assets/visual/pattern-bg.png" />
+    <div class="header__content">
+      <div class="header__container">
+        <h1 class="title">IP Adress Tracker</h1>
+        <div class="container">
+          <app-search></app-search>
+          <div class="info">
+            <app-card>
+              <app-location></app-location>
+            </app-card>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
+  <main>
+    <app-map></app-map>
+  </main>
+</div>
+
+<div class="centered" *ngIf="isLoading || isError">
+  <app-fancy-spinner
+    *ngIf="isLoading && !isError; else error"
+  ></app-fancy-spinner>
+
+  <ng-template #error>
+    <app-error>
+      <h1>!Oops</h1>
+      <h4>
+        {{ isError }}
+      </h4>
+    </app-error>
+  </ng-template>
+</div>
