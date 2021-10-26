@@ -27,8 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/leaflet.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/leaflet.css"
             ],
             "scripts": []
           },
@@ -56,10 +56,22 @@
             },
             "development": {
               "buildOptimizer": false,
-              "optimization": false,
+              "optimization": {
+                "scripts": true,
+                "styles":{
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": true
+              },
               "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
+              "sourceMap": {
+                "scripts": true,
+                "styles": false,
+                "hidden": true,
+                "vendor": true
+              },
               "namedChunks": true
             }
           },
