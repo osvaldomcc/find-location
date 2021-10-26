@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { MapService } from '../../services/map.service';
 import { IpGeo } from '../../interfaces/ipgeo.interface';
 
@@ -7,16 +7,14 @@ import { IpGeo } from '../../interfaces/ipgeo.interface';
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css']
 })
-export class LocationComponent implements AfterContentChecked {
+export class LocationComponent implements OnInit {
 
     ipAddress!: IpGeo;
     isLoading: boolean = true;
 
     constructor(private mapService: MapService) { }
   
-    ngAfterContentChecked(): void {
-      this.mapService.userLocation.subscribe( desc => {
-        this.ipAddress = desc
-      });
+    ngOnInit(): void {
+      this.mapService.userLocation.subscribe( location => this.ipAddress = location );
     }
 }
