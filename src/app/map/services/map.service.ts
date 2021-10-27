@@ -16,14 +16,15 @@ export class MapService {
   private _marker!: Marker;
   private _apiKey: string = environment.IP_GEO;
   private _baseUrl: string = environment.IP_GEO_BASE_URL;
-  userLocation: BehaviorSubject<IpGeo> = new BehaviorSubject({});
+  private _userLocation: BehaviorSubject<IpGeo> = new BehaviorSubject({});
+  readonly userLocation: Observable<IpGeo> = this._userLocation.asObservable();
 
   constructor(private http: HttpClient) { }
 
   //Inicializa el mapa
   initMap(mapRef: HTMLElement) : void{
     this._map = new Map(mapRef, {zoomControl: false});
-    this.userLocation.subscribe( ({ latitude, longitude }) =>{
+    this._userLocation.subscribe( ({ latitude, longitude }) =>{
       const lat: number = Number(latitude);
       const lng: number = Number(longitude);
       this._map.setView([lat, lng], 13);
@@ -39,7 +40,7 @@ export class MapService {
   getUserLocation() : Observable<IpGeo> {
     const url = `${this._baseUrl}?apiKey=${this._apiKey}`;
     return this.http.get<IpGeo>(url).pipe(
-      tap( location => this.userLocation.next(location) )
+      tap( location => this._userLocation.next(location) )
     );
   }
 
@@ -48,7 +49,7 @@ export class MapService {
     const url = `${this._baseUrl}?apiKey=${this._apiKey}&ip=${value}`;
     return this.http.get<IpGeo>(url).pipe(
       tap( location => {
-        this.userLocation.next(location)
+        this._userLocation.next(location)
         this._map.removeLayer(this._marker);
         //Añade un nuevo marcador al Mapa
         this.addNewMarker();
@@ -58,7 +59,7 @@ export class MapService {
 
   //Añade un nuevo marcador al mapa
   addNewMarker(){
-    this.userLocation.subscribe( ({ latitude, longitude}) => {
+    this._userLocation.subscribe( ({ latitude, longitude}) => {
       const lat: number = Number(latitude);
       const lng: number = Number(longitude);
       this._marker = new Marker([lat,lng]).setIcon(new Icon({
